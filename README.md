@@ -1,1 +1,1 @@
-# alien-catcher
+# Alien Catcher
