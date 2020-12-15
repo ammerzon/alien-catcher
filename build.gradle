@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'com.github.johnrengelman.shadow' version '6.1.0'
 }
 
 group 'com.ammerzon'
@@ -9,6 +10,35 @@ repositories {
     mavenCentral()
 }
 
+task(runPart1, dependsOn: 'classes', type: JavaExec) {
+    main = 'com.ammerzon.aliencatcher.part1.Launcher'
+    classpath = sourceSets.main.runtimeClasspath
+    classpath += sourceSets.main.resources
+}
+
+task(runPart2, dependsOn: 'classes', type: JavaExec) {
+    main = 'com.ammerzon.aliencatcher.part2.Launcher'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task(runPart3, dependsOn: 'classes', type: JavaExec) {
+    main = 'com.ammerzon.aliencatcher.part3.Launcher'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task(runPart4, dependsOn: 'classes', type: JavaExec) {
+    main = 'com.ammerzon.aliencatcher.part4.Launcher'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+shadowJar {
+    manifest {
+        attributes 'Main-Class': 'com.ammerzon.aliencatcher.part1.Launcher'
+    }
+}
+
+
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    implementation('io.github.cdimascio:dotenv-java:2.2.0')
+    testImplementation('junit:junit:4.12')
 }
